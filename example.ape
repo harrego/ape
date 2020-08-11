@@ -1,0 +1,4 @@
+var name = "ape"
+
+print("my name is...")
+print(name)
