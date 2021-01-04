@@ -1,1 +1,7 @@
 print("my name is... APE!")
+
+var x = "1"
+var y = "1"
+if x == y {
+print("hello")
+}

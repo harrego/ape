@@ -1,5 +1,9 @@
 # ape
 
+## IMPORTANT
+
+There is no integer support and if statements can only compare integers, this is only temporary. To fix this, after transpiling an Ape file you must replace the characters prefixing the string from "db" to "dd", remove the string length and remove the single quotes from after the number. After these changes if statements will work.
+
 Generic C style language -> elf64 NASM transpiler
 
 ## Usage
