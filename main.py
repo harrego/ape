@@ -47,26 +47,26 @@ print(variables)
 print(sectionStart)
 
 finalFileLines = []
-finalFileLines.append("SECTION .DATA")
+finalFileLines.append("global _start")
+finalFileLines.append("section .data")
 for var in variables:
     finalFileLines.append("\t" + var + ": db '" + variables[var] + "'," + str(len(variables[var])))
     finalFileLines.append("\t" + var + "_SYSTEM_LEN: equ $-" + var)
 
-finalFileLines.append("SECTION .TEXT")
-finalFileLines.append("\tGLOBAL _start")
+finalFileLines.append("section .text")
 
 finalFileLines.append("_start:")
 for instruction in sectionStart:
     if instruction[0] == "print":
-        finalFileLines.append("\tmov eax,1")
-        finalFileLines.append("\tmov ebx,1")
-        finalFileLines.append("\tmov ecx," + instruction[1])
-        finalFileLines.append("\tmov edx," + instruction[1] + "_SYSTEM_LEN")
-        finalFileLines.append("\tint 80h")
+        finalFileLines.append("\tmov rax,1")
+        finalFileLines.append("\tmov rdi,1")
+        finalFileLines.append("\tmov rsi," + instruction[1])
+        finalFileLines.append("\tmov rdx," + instruction[1] + "_SYSTEM_LEN")
+        finalFileLines.append("\tsyscall")
 
-finalFileLines.append("\tmov eax,1")
-finalFileLines.append("\tmov ebx,0")
-finalFileLines.append("\tint 80h")
+finalFileLines.append("\tmov rax,60")
+finalFileLines.append("\txor rdi,rdi")
+finalFileLines.append("\tsyscall")
 
 finalFileLines.append("")
 
